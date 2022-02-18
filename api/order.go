@@ -218,9 +218,9 @@ func (a *App) UpdateOrder(c *gin.Context) {
 		query = `
 			UPDATE items 
 			SET item_code = $1, description = $2, quantity = $3
-			WHERE item_id = $4;
+			WHERE item_id = $4 AND order_id = $5;
 		`
-		res, err := a.DB.Exec(query, item.ItemCode, item.Description, item.Quantity, item.ItemID)
+		res, err := a.DB.Exec(query, item.ItemCode, item.Description, item.Quantity, item.ItemID, orderID)
 		if err != nil {
 			throwServerError(c, err)
 			return
