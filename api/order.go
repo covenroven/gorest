@@ -168,6 +168,7 @@ func (a *App) CreateOrder(c *gin.Context) {
 			throwServerError(c, err)
 			return
 		}
+		order.Items[i].OrderID = order.OrderID
 	}
 
 	c.JSON(http.StatusCreated, gin.H{
